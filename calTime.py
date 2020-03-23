@@ -11,6 +11,10 @@ class CalTime(object):
     def __init__(self):
         pass
 
+    @staticmethod
+    def now():
+        return time.time()
+
     def start(self):
         self.sta_time = time.time()
         return self.sta_time

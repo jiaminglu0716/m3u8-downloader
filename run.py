@@ -15,7 +15,8 @@ def download(data=False):
         path=save_path,
         sleep=sleep,
         d_type=d_type
-    ).start()
+    )
+    mdl.start()
 
     if data:
         return save_path, mdl.m3u8_path
@@ -62,19 +63,19 @@ if __name__ == '__main__':
     print('1 下载并且合并')
     print('2 下载视频')
     print('3 合并视频')
-
+    
     mode_s = input('模式: ')
     mode = int(mode_s)
-
+    
     use_mode(mode)
 
     """
     下载视频
     """
     # url = ""
-    # mdl = M3U8DownloadLoader(
+    # M3U8DownloadLoader(
     #     link=url,
-    #     path="d:/download4",
+    #     path="d:/download",
     #     sleep=5,
     #     d_type=0
     # ).start()
@@ -82,4 +83,4 @@ if __name__ == '__main__':
     """
     合并视频
     """
-    # M3U8VideoUtil('D:/download2/output.m3u8').ffmpeg_m3u8_reduce('D:/download2', 'D:/o2.ts')
+    # M3U8VideoUtil('D:/download1/output.m3u8').ffmpeg_m3u8_reduce('D:/download1', 'D:/s1.ts')

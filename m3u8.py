@@ -36,14 +36,24 @@ class M3U8DownloadLoader(object):
         while not self.m3u8_parser.exists():
             self.m3u8_parser.download(self.m3u8_url)
 
-    # 执行
-    def start(self):
+    def get_video_info(self):
         self.check_m3u8()
         urls = self.m3u8_parser_data.get("urls")
         file_paths = [url[url.rfind('/') + 1:] for url in urls]
         file_num = len(file_paths)
+        return urls, file_paths, file_num
+
+    def get_run_obj(self):
+        urls, file_paths, file_num = self.get_video_info()
         self.start_tips(file_num=file_num)
-        MultiDownload(urls, file_paths).download(d_type=self.download_type, sleep=self.sleep)
+        return MultiDownload(urls, file_paths, d_type=self.download_type, sleep=self.sleep)
+
+    # 执行
+    def start(self):
+        self.get_run_obj().download()
+
+    def re_start(self):
+        self.get_run_obj().continue_download()
 
     # 提示
     def start_tips(self, **kwargs):

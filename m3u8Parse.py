@@ -36,7 +36,7 @@ class M3U8(object):
     def request(self, url):
         self.url = url
         self.url_path = url[0: url.rfind('/')]
-        return requests.get(url, headers=self.headers, stream=True)
+        return requests.get(url, headers=self.headers)
 
     def download(self, url):
         res = self.request(url)
